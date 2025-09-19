@@ -4,12 +4,14 @@ namespace Dpb\Package\Fleet\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Pivot for licence plate history
  */
-class LicencePlateHistory extends Model
+// class LicencePlateHistory extends Model
+class LicencePlateHistory extends Pivot
 {
     use SoftDeletes;
 

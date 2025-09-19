@@ -36,18 +36,16 @@ return new class extends Migration
                 ->comment('Unique code used in application.')
                 ->unique();
             $table->string('title')
-                ->nullable()
-                ->comment('');
+                ->nullable();
             $table->string('description')
-                ->nullable()
-                ->comment('');            
+                            ->nullable();            
             $table->timestamps();
             $table->softDeletes();
         });
 
         // vehicle types
         Schema::create($tablePrefix . 'vehicle_types', function (Blueprint $table) {
-            $table->comment('List of vehicle types');
+            $table->comment('List of vehicle types.');
             $table->id();
             $table->string('code');
             $table->string('title');
@@ -111,25 +109,8 @@ return new class extends Migration
             $table->foreignId('consumption_type_id')
                 ->nullable(false)
                 ->constrained($tablePrefix . 'fuel_consumption_types', 'id');
-            $table->decimal('value')->comment('Amount of fuel consumed per 100km');
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        // fuel consumption types
-        Schema::create($tablePrefix . 'vehicles', function (Blueprint $table) use ($tablePrefix) {
-            $table->comment('List of vehicles');
-            $table->id();
-            $table->string('vin')
-                ->nullable()
-                ->comment('Unique VIN. not always stored.')
-                ->unique();
-            $table->string('code')
-                ->nullable()
-                ->comment('4 digit vehicle code. Multiple vehicles can have same code over time.');
-            $table->foreignId('model_id')
-                ->nullable()
-                ->constrained($tablePrefix . 'vehicle_models', 'id');
+            $table->decimal('value')
+                ->comment('Amount of fuel consumed per 100km');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -192,6 +173,7 @@ return new class extends Migration
 
         Schema::dropIfExists($tablePrefix . 'licence_plate_history');
         Schema::dropIfExists($tablePrefix . 'group_vehicle');
+        Schema::dropIfExists($tablePrefix . 'vehicle_model_fuel_consumption');
         Schema::dropIfExists($tablePrefix . 'vehicles');
         Schema::dropIfExists($tablePrefix . 'licence_plates');
         Schema::dropIfExists($tablePrefix . 'vehicle_models');

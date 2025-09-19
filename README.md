@@ -1,29 +1,39 @@
-# TO DO REWRITE THIS
+# 
 
-### Vehicle
+# Install
 
-List of vehicle instances. Concrete vehicles 
+```bash
+# install package
+composer require dpb/pkg-fleet:dev-main
+```
 
-### Vehicle type
+```bash
+# publish migrations
+artisan pkg-fleet:install
 
-Generic vehicle type like bus, tram, etc.
+# yes to create and run migrations
+```
 
-### Vehicle model
+# Package content
 
-Specific vehicle model with detailed parameters.
+## Vehicle
 
-### Vehicle groups
+| modul          | desc                                                              |
+| -------------- | ----------------------------------------------------------------- |
+| Vehicle        | List of vehicle instances. Concrete vehicles                      |
+| Vehicle type   | Generic vehicle type like bus, tram, etc.                         |
+| Vehicle model  | Specific vehicle model with detailed parameters                   |
+| Vehicle groups | Generic tool to group vehicles                                    |
+| Licence plates | List of lince plates and history of their assignments to vehicles |
 
-Generic tool to group vehicles
+## Fuel
 
-### Licence plates
+| modul                  | desc                                                                 |
+| ---------------------- | -------------------------------------------------------------------- |
+| Fuel types             |                                                                      |
+| Fuel consumption types | List of fuel consumption types e.g. city, out of city in winter etc. |
 
-List of lince plates and history of their assignments to vehicles
+## TO DO
 
-# Fuel
-
-### Fuel types
-
-### Fuel consumption types
-
-List of fuel consumption types e.g. city, out of city in winter etc.
+* Tires
+* More fuel related functionality

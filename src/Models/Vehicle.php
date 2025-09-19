@@ -54,7 +54,7 @@ class Vehicle extends Model
             ->withPivot(['date_from', 'date_to']);
     }
 
-    public function licencePlateAttribute()
+    public function getLicencePlateAttribute()
     {
         return $this->licencePlates()
             ->orderByDesc('date_from')
