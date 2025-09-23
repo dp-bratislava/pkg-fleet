@@ -4,7 +4,7 @@
 
 ```bash
 # install package
-composer require dpb/pkg-fleet:dev-main
+composer require dpb/pkg-fleet
 ```
 
 ```bash
@@ -13,6 +13,8 @@ artisan pkg-fleet:install
 
 # yes to create and run migrations
 ```
+
+# WIP
 
 # Package content
 

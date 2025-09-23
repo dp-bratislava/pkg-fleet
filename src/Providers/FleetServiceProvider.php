@@ -19,15 +19,13 @@ class FleetServiceProvider extends PackageServiceProvider
             ])
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
+                    ->startWith(function(InstallCommand $command) {
+                        $command->info('Installing pkg-eav first...');
+                        $command->call('pkg-eav:install');
+                    })
                     ->publishMigrations()
                     ->publishConfigFile()
-                    ->askToRunMigrations()
-                    ->endWith(function () {
-                        // Artisan::call('db:seed', [
-                        //     '--class' => \Dpb\Package\Fleet\Database\Seeders\DatabaseSeeder::class,
-                        //     '--force' => true,
-                        // ]);
-                    });
+                    ->askToRunMigrations();
             });
     }    
 }
