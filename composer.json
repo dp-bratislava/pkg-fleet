@@ -13,11 +13,13 @@
             "email": "horny.andrej@dpb.sk"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
         "laravel/framework": "^11.0 || ^12.0",
         "spatie/laravel-permission": "^6.3",
-        "spatie/laravel-package-tools": "^1.92"
+        "spatie/laravel-package-tools": "^1.92",
+        "dpb/pkg-eav": "^1.0"
     },
     "extra": {
         "laravel": {

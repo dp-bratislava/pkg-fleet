@@ -13,8 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 // class LicencePlateHistory extends Model
 class LicencePlateHistory extends Pivot
 {
-    use SoftDeletes;
-
     protected $fillable = [
         'vehicle_id', 
         'licence_plate_id', 

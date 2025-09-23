@@ -2,6 +2,7 @@
 
 namespace Dpb\Package\Fleet\Models;
 
+use Dpb\Package\Eav\Traits\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -9,7 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VehicleModel extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes;    
+    use HasAttributes;
 
     /**
      * The attributes that are mass assignable.
