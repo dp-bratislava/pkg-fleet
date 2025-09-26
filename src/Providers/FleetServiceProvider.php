@@ -16,6 +16,7 @@ class FleetServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasMigrations([
                 '0001_create_fleet_tables',
+                '0001_add_code_history',
             ])
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
