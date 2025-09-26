@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $tablePrefix = config('pkg-vehicles.table_prefix');
+        $tablePrefix = config('pkg-fleet.table_prefix');
 
         // vehicle codes
         Schema::create($tablePrefix . 'vehicle_codes', function (Blueprint $table) {
@@ -44,7 +44,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $tablePrefix = config('pkg-vehicles.table_prefix');
+        $tablePrefix = config('pkg-fleet.table_prefix');
 
         Schema::dropIfExists($tablePrefix . 'vehicle_code_history');
         Schema::dropIfExists($tablePrefix . 'vehicle_codes');
