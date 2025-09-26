@@ -2,10 +2,33 @@
 
 # Install
 
+### 1. Add repository sources into `composer.json` file in application root directory
+
+```json
+"repositories": [
+        ...,
+        {
+            "type": "vcs",
+            "url": "git@github.com:dp-bratislava/pkg-fleet.git"
+        },        
+        {
+            "type": "vcs",
+            "url": "git@github.com:dp-bratislava/pkg-eav.git"
+        },
+        ...,
+]
+```
+
+### 2. Install composer repositories
+
 ```bash
 # install package
 composer require dpb/pkg-fleet
 ```
+
+### 3. Run migrations
+
+First it installs migrations for EAV package, then for fleet package itself.
 
 ```bash
 # publish migrations
