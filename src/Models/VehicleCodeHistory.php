@@ -2,11 +2,11 @@
 
 namespace Dpb\Package\Fleet\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class VehicleCodeHistory extends Model
+class VehicleCodeHistory extends Pivot
 {
     use SoftDeletes;
 
