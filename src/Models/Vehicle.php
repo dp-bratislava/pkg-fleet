@@ -63,7 +63,7 @@ class Vehicle extends Model
     {
         return $this->belongsToMany(
             VehicleCode::class,
-            config('pkg-vehicles.table_prefix') . "vehicle_code_history",
+            config('pkg-fleet.table_prefix') . "vehicle_code_history",
             'vehicle_id',
             'vehicle_code_id',
             'id',
