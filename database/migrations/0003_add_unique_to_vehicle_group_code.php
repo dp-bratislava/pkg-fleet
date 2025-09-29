@@ -27,7 +27,7 @@ return new class extends Migration
         $tablePrefix = config('pkg-fleet.table_prefix');
 
         Schema::table($tablePrefix . 'vehicle_groups', function (Blueprint $table) {
-            $table->dropUnique(['email']);
+            $table->dropUnique(['code']);
         });
     }
 };
