@@ -26,13 +26,14 @@ class Vehicle extends Model implements HasStatesContract
         'vin',
         // 'code',
         'model_id',
+        'state',
     ];
 
     public function __construct(array $attributes = [])
     {
         // Dynamically resolve state class from config (falls back to default)
         $this->casts['state'] = config(
-            'pkg-fleet.vehicle_state_class',
+            'pkg-fleet.classes.vehicle_state_class',
             VehicleState::class // package default
         );
 
