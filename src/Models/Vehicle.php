@@ -32,7 +32,7 @@ class Vehicle extends Model implements HasStatesContract
     {
         // Dynamically resolve state class from config (falls back to default)
         $this->casts['state'] = config(
-            'pkg-fleet.ticket_state_class',
+            'pkg-fleet.vehicle_state_class',
             VehicleState::class // package default
         );
 
