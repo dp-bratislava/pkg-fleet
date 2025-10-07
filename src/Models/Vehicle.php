@@ -3,6 +3,7 @@
 namespace Dpb\Package\Fleet\Models;
 
 use Dpb\Extension\ModelState\Traits\HasStateHistory;
+use Dpb\Package\Fleet\States\VehicleState;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -26,6 +27,17 @@ class Vehicle extends Model implements HasStatesContract
         // 'code',
         'model_id',
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        // Dynamically resolve state class from config (falls back to default)
+        $this->casts['state'] = config(
+            'pkg-fleet.ticket_state_class',
+            VehicleState::class // package default
+        );
+
+        parent::__construct($attributes);
+    }
 
     public function getTable()
     {
