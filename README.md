@@ -37,6 +37,10 @@ artisan pkg-fleet:install
 # yes to create and run migrations
 ```
 
+### 4. Vehicle states
+
+Using extended spatie model states package we can define state matrix with states, transitions between states and rules for transitions.
+
 # WIP
 
 # Package content

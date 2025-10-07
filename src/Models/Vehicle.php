@@ -2,14 +2,19 @@
 
 namespace Dpb\Package\Fleet\Models;
 
+use Dpb\Extension\ModelState\Traits\HasStateHistory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\ModelStates\HasStates;
+use Spatie\ModelStates\HasStatesContract;
 
-class Vehicle extends Model
+class Vehicle extends Model implements HasStatesContract
 {
     use SoftDeletes;
+    use HasStates;
+    use HasStateHistory;
 
     /**
      * The attributes that are mass assignable.
