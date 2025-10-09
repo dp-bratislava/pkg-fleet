@@ -15,6 +15,10 @@
             "type": "vcs",
             "url": "git@github.com:dp-bratislava/pkg-eav.git"
         },
+        {
+            "type": "vcs",
+            "url": "git@github.com:dp-bratislava/ext-spatie-model-states-.git"
+        },        
         ...,
 ]
 ```
@@ -40,6 +44,26 @@ artisan pkg-fleet:install
 ### 4. Vehicle states
 
 Using extended spatie model states package we can define state matrix with states, transitions between states and rules for transitions.
+
+Specific states and transitions have to be defined in application itself. Package provides just basic abstract state that should be extended accordingly.
+e.g.
+add default state class to `App/States/Fleet/Vehicle`
+add default state class mapping to pkg-fleet config
+```php
+# config/pkg-fleet.php
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default class mapping
+    |--------------------------------------------------------------------------
+    */
+    'classes' => [
+        'vehicle_state_class' => '\App\States\Fleet\Vehicle\VehicleState::class',
+    ],    
+```
+add custom states extending default state to `App/States/Fleet/Vehicle`
+add transitions classes to `App/StateTransitions/Fleet/Vehicle`
+TO DO
 
 # WIP
 
