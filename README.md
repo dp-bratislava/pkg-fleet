@@ -46,10 +46,11 @@ artisan pkg-fleet:install
 Using extended spatie model states package we can define state matrix with states, transitions between states and rules for transitions.
 
 Specific states and transitions have to be defined in application itself. Package provides just basic abstract state that should be extended accordingly.
-e.g.
-add default state class to `App/States/Fleet/Vehicle`
-add default state class mapping to pkg-fleet config
-```php
+
+1. Add default state class to `App/States/Fleet/Vehicle` 
+2. Add default state class mapping to pkg-fleet config
+#### config/pkg-fleet.php
+```php 
 # config/pkg-fleet.php
 
     /*
@@ -61,8 +62,9 @@ add default state class mapping to pkg-fleet config
         'vehicle_state_class' => '\App\States\Fleet\Vehicle\VehicleState::class',
     ],    
 ```
-add custom states extending default state to `App/States/Fleet/Vehicle`
-add transitions classes to `App/StateTransitions/Fleet/Vehicle`
+1. add custom states extending default state to `App/States/Fleet/Vehicle` 
+2. add transitions classes to `App/StateTransitions/Fleet/Vehicle` 
+
 TO DO
 
 # WIP
