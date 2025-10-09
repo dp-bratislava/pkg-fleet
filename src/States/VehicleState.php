@@ -2,8 +2,8 @@
 
 namespace Dpb\Package\Fleet\States;
 
-use Spatie\ModelStates\State;
+use Dpb\Extension\ModelState\Models\State as BaseState;
 
-abstract class VehicleState extends State
+abstract class VehicleState extends BaseState
 {
 }
