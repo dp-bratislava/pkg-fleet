@@ -124,7 +124,7 @@ Add custom states extending default state to `App/States/Fleet/Vehicle`
 
 namespace App\States\Fleet\Vehicle;
 
- class Discarded extends VehicleState
+class Discarded extends VehicleState
 {
     public static $name = "discarded";
 
@@ -174,6 +174,10 @@ class DiscardedToInService extends Transition
     }
 }
 ```
+
+## 5. Localisation
+
+...
 
 # Package content
 

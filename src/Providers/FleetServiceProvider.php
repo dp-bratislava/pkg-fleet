@@ -25,6 +25,8 @@ class FleetServiceProvider extends PackageServiceProvider
                     ->startWith(function(InstallCommand $command) {
                         $command->info('Installing pkg-eav first...');
                         $command->call('pkg-eav:install');
+                        $command->info('Installing ext-spatie-model-states...');
+                        $command->call('ext-spatie-model-states:install');
                     })
                     ->publishMigrations()
                     ->publishConfigFile()
