@@ -1,6 +1,13 @@
-# 
+# Table of Contents
 
-# Install
+- [Installation](#installation)
+  - [Composer](#composer)
+  - [Migrations](#migrations)
+- [Vehicle states](#vehicle-states)
+
+# Installation
+
+## Composer
 
 ### 1. Add repository sources into `composer.json` file in application root directory
 
@@ -30,7 +37,7 @@
 composer require dpb/pkg-fleet
 ```
 
-### 3. Run migrations
+## Migrations
 
 First it installs migrations for EAV package, then for fleet package itself.
 
@@ -41,7 +48,7 @@ artisan pkg-fleet:install
 # yes to create and run migrations
 ```
 
-### 4. Vehicle states
+# 4. Vehicle states
 
 Using extended spatie model states package we can define state matrix with states, transitions between states and rules for transitions.
 
@@ -62,8 +69,23 @@ Specific states and transitions have to be defined in application itself. Packag
         'vehicle_state_class' => '\App\States\Fleet\Vehicle\VehicleState::class',
     ],    
 ```
-1. add custom states extending default state to `App/States/Fleet/Vehicle` 
-2. add transitions classes to `App/StateTransitions/Fleet/Vehicle` 
+3. add custom states extending default state to `App/States/Fleet/Vehicle` 
+#### app/States/Fleet/Vehicle/Discarded.php
+```php
+<?php
+
+namespace App\States\Fleet\Vehicle;
+
+ class Discarded extends VehicleState
+{
+    public static $name = "discarded";
+
+    public function label():string {
+        return __('fleet/vehicle.states.discarded');
+    }    
+}
+```
+4. add transitions classes to `App/StateTransitions/Fleet/Vehicle` 
 
 TO DO
 
