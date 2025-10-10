@@ -19,6 +19,7 @@ class FleetServiceProvider extends PackageServiceProvider
                 '0002_add_code_history_table',
                 '0003_add_unique_to_vehicle_group_code',
                 '0004_add_state_to_vehicle',
+                '0005_add_brands_table',
             ])
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command

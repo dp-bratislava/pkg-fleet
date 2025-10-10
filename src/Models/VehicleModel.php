@@ -35,6 +35,11 @@ class VehicleModel extends Model
         return config('pkg-fleet.table_prefix') . 'vehicle_models';
     }
 
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class, "brand_id");
+    }
+
     public function type(): BelongsTo
     {
         return $this->belongsTo(VehicleType::class, "type_id");
