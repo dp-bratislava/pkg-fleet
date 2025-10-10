@@ -28,17 +28,4 @@ class Brand extends Model
     {
         return $this->hasMany(VehicleModel::class);
     }
-
-    /**
-     * Get vehicle currently assigned to this code
-     * 
-     * @return object|object{pivot: \Illuminate\Database\Eloquent\Relations\Pivot|Vehicles|null}
-     */
-    public function getVehicleAttribute(): ?Vehicle
-    {
-        return $this->vehicles()
-            ->orderByDesc('date_from')
-            ->first();
-    }
-
 }
