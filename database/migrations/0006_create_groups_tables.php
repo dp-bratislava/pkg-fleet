@@ -42,7 +42,7 @@ return new class extends Migration
         });
 
         // pivot vehicle dispatch groups
-        Schema::table($tablePrefix . 'dispatch_group_vehicle', function (Blueprint $table) use ($tablePrefix) {
+        Schema::create($tablePrefix . 'dispatch_group_vehicle', function (Blueprint $table) use ($tablePrefix) {
             $table->comment('Pivot for vehicle dispatch groups');
             $table->id();
             $table->foreignId('vehicle_id')
@@ -56,7 +56,7 @@ return new class extends Migration
         });
 
         // pivot vehicle maintenance groups
-        Schema::table($tablePrefix . 'maintenance_group_vehicle', function (Blueprint $table) use ($tablePrefix) {
+        Schema::create($tablePrefix . 'maintenance_group_vehicle', function (Blueprint $table) use ($tablePrefix) {
             $table->comment('Pivot for vehicle maintenance groups');
             $table->id();
             $table->foreignId('vehicle_id')
