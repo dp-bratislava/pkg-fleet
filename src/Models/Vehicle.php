@@ -7,6 +7,7 @@ use Dpb\Package\Fleet\States\VehicleState;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\ModelStates\HasStates;
 use Spatie\ModelStates\HasStatesContract;
@@ -109,4 +110,9 @@ class Vehicle extends Model implements HasStatesContract
             ->orderByDesc('date_from')
             ->first()?->code;
     }
+
+    public function travelLog() : HasMany 
+    {
+        return $this->hasMany(TravelLog::class, 'vehicle_id');
+    }    
 }
