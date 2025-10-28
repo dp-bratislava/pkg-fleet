@@ -14,7 +14,7 @@ return new class extends Migration
         $tablePrefix = config('pkg-fleet.table_prefix');
 
         // vehicle codes
-        Schema::table($tablePrefix . 'vehicle_groups', function (Blueprint $table) {
+        Schema::table($tablePrefix . 'vehicle_models', function (Blueprint $table) {
             $table->dropColumn([
                 'length',
                 'tank_size',
@@ -33,7 +33,7 @@ return new class extends Migration
     {
         $tablePrefix = config('pkg-fleet.table_prefix');
 
-        Schema::table($tablePrefix . 'vehicle_groups', function (Blueprint $table) use ($tablePrefix) {
+        Schema::table($tablePrefix . 'vehicle_models', function (Blueprint $table) use ($tablePrefix) {
             $table->decimal('length')->nullable()->comment('Length in meters');
             $table->integer('tank_size')->nullable()->comment('Tank size in liters');
             $table->integer('seats')->nullable()->comment('Number of seats in vehicle');

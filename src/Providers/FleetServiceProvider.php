@@ -23,6 +23,8 @@ class FleetServiceProvider extends PackageServiceProvider
                 '0006_create_groups_tables',
                 '0007_travel_log_table',
                 '0008_alter_vehicle_models_table',
+                '0009_add_color_to_maintenance_groups_table',
+                '0010_add_maintenance_group_to_vehicles_table',
             ])
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command

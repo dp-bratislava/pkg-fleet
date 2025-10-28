@@ -19,6 +19,7 @@ class MaintenanceGroup extends Model
         'code',
         'title',
         'description',
+        'color',
     ];
 
     public function getTable()

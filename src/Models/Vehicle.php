@@ -4,6 +4,7 @@ namespace Dpb\Package\Fleet\Models;
 
 use Dpb\Extension\ModelState\Traits\HasStateHistory;
 use Dpb\Package\Fleet\States\VehicleState;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -49,6 +50,11 @@ class Vehicle extends Model implements HasStatesContract
     public function model(): BelongsTo
     {
         return $this->belongsTo(VehicleModel::class, "model_id");
+    }
+
+    public function maintenanceGroup(): BelongsTo
+    {
+        return $this->belongsTo(MaintenanceGroup::class, "maintenance_group_id");
     }
 
     public function groups(): BelongsToMany
@@ -111,8 +117,40 @@ class Vehicle extends Model implements HasStatesContract
             ->first()?->code;
     }
 
-    public function travelLog() : HasMany 
+    public function travelLog(): HasMany
     {
         return $this->hasMany(TravelLog::class, 'vehicle_id');
-    }    
+    }
+
+    // /**
+    //  * Summary of scopeByType
+    //  * @param \Illuminate\Database\Eloquent\Builder $query
+    //  * @param string|array $type
+    //  * @return void
+    //  */
+    // public function scopeByType(Builder $query, string|array $type)
+    // {
+    //     // cast input to array
+    //     $type = is_array($type) ? $type : [$type];
+
+    //     $query->whereHas('model.type', function ($q) use ($type) {
+    //         $q->whereIn('code', $type);
+    //     });
+    // }
+
+    // /**
+    //  * Summary of scopeByMaintenanceGroup
+    //  * @param \Illuminate\Database\Eloquent\Builder $query
+    //  * @param string|array $maintenanceGroup
+    //  * @return void
+    //  */
+    // public function scopeByMaintenanceGroup(Builder $query, string|array $maintenanceGroup)
+    // {
+    //     // cast input to array
+    //     $maintenanceGroup = is_array($maintenanceGroup) ? $maintenanceGroup : [$maintenanceGroup];
+
+    //     $query->whereHas('model.type', function ($q) use ($maintenanceGroup) {
+    //         $q->whereIn('code', $maintenanceGroup);
+    //     });
+    // }
 }
