@@ -15,7 +15,7 @@ return new class extends Migration
 
         // maintenance group colors
         Schema::table($tablePrefix . 'maintenance_groups', function (Blueprint $table) {
-            $table->string('color')->nullable();
+            $table->string('color')->nullable()->after('description');
         });
 
     }

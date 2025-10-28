@@ -14,9 +14,10 @@ return new class extends Migration
         $tablePrefix = config('pkg-fleet.table_prefix');
 
         // maintenance group colors
-        Schema::table($tablePrefix . 'maintenance_groups', function (Blueprint $table) use ($tablePrefix) {
+        Schema::table($tablePrefix . 'vehicles', function (Blueprint $table) use ($tablePrefix) {
             $table->foreignId('maintenance_group_id')
                 ->nullable()
+                ->after('model_id')
                 ->constrained($tablePrefix . 'maintenance_groups', 'id');
         });
     }
@@ -28,7 +29,7 @@ return new class extends Migration
     {
         $tablePrefix = config('pkg-fleet.table_prefix');
 
-        Schema::table($tablePrefix . 'maintenance_groups', function (Blueprint $table) use ($tablePrefix) {
+        Schema::table($tablePrefix . 'vehicles', function (Blueprint $table) use ($tablePrefix) {
             $table->dropConstrainedForeignId('maintenance_group_id');
         });
     }
