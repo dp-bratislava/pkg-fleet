@@ -18,7 +18,11 @@ return new class extends Migration
             $table->integer('construction_year')
                 ->nullable()
                 ->comment('May differ from model year')
-                ->after('maintenance_group_id');            
+                ->after('maintenance_group_id');  
+            $table->integer('comissioning_date')
+                ->nullable()
+                ->comment('Date when we added this vehicle to fleet')
+                ->after('construction_year');            
             $table->date('warranty_initial_date')
                 ->nullable()
                 ->comment('Warranty runs from this date')

@@ -4,6 +4,7 @@ namespace Dpb\Package\Fleet\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,6 +22,7 @@ class MaintenanceGroup extends Model
         'title',
         'description',
         'color',
+        'vehicle_type_id',
     ];
 
     public function getTable()
@@ -30,6 +32,10 @@ class MaintenanceGroup extends Model
 
     public function vehicles() : HasMany {
         return $this->hasMany(Vehicle::class);
+    }
+
+    public function vehicleType() : BelongsTo {
+        return $this->belongsTo(VehicleType::class);
     }
 
     /**
