@@ -29,11 +29,17 @@ class Vehicle extends Model implements HasStatesContract
         // 'code',
         'model_id',
         'state',
+        'construction_year',
+        'warranty_initial_date',
+        'warranty_months',
+        'warranty_initial_km',
+        'warranty_km',
     ];
 
     public function __construct(array $attributes = [])
     {
         // Dynamically resolve state class from config (falls back to default)
+        $this->casts['warranty_initial_date'] = 'date';
         $this->casts['state'] = config(
             'pkg-fleet.classes.vehicle_state_class',
             VehicleState::class // package default
@@ -117,40 +123,78 @@ class Vehicle extends Model implements HasStatesContract
             ->first()?->code;
     }
 
+    // TO DO
+    public function isUnderWarranty(): bool
+    {
+        return true;
+    }
+
     public function travelLog(): HasMany
     {
         return $this->hasMany(TravelLog::class, 'vehicle_id');
     }
 
-    // /**
-    //  * Summary of scopeByType
-    //  * @param \Illuminate\Database\Eloquent\Builder $query
-    //  * @param string|array $type
-    //  * @return void
-    //  */
-    // public function scopeByType(Builder $query, string|array $type)
-    // {
-    //     // cast input to array
-    //     $type = is_array($type) ? $type : [$type];
+    /**
+     * Summary of scopeByType
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $type
+     * @return void
+     */
+    public function scopeByType(Builder $query, string|array $type)
+    {
+        // cast input to array
+        $type = is_array($type) ? $type : [$type];
 
-    //     $query->whereHas('model.type', function ($q) use ($type) {
-    //         $q->whereIn('code', $type);
-    //     });
-    // }
+        $query->whereHas('model', function ($q) use ($type) {
+            $q->byType($type);
+        });
+    }
 
-    // /**
-    //  * Summary of scopeByMaintenanceGroup
-    //  * @param \Illuminate\Database\Eloquent\Builder $query
-    //  * @param string|array $maintenanceGroup
-    //  * @return void
-    //  */
-    // public function scopeByMaintenanceGroup(Builder $query, string|array $maintenanceGroup)
-    // {
-    //     // cast input to array
-    //     $maintenanceGroup = is_array($maintenanceGroup) ? $maintenanceGroup : [$maintenanceGroup];
+    /**
+     * Summary of scopeByBrand
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $brand
+     * @return void
+     */
+    public function scopeByBrand(Builder $query, string|array $brand)
+    {
+        // cast input to array
+        $brand = is_array($brand) ? $brand : [$brand];
 
-    //     $query->whereHas('model.type', function ($q) use ($maintenanceGroup) {
-    //         $q->whereIn('code', $maintenanceGroup);
-    //     });
-    // }
+        $query->whereHas('model', function ($q) use ($brand) {
+            $q->byBrand($brand);
+        });
+    }
+
+    /**
+     * Summary of scopeByMaintenanceGroup
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $maintenanceGroup
+     * @return void
+     */
+    public function scopeByMaintenanceGroup(Builder $query, string|array $maintenanceGroup)
+    {
+        // cast input to array
+        $maintenanceGroup = is_array($maintenanceGroup) ? $maintenanceGroup : [$maintenanceGroup];
+
+        $query->whereHas('maintenanceGroup', function ($q) use ($maintenanceGroup) {
+            $q->byCode($maintenanceGroup);
+        });
+    }
+
+    /**
+     * Summary of scopeByGroup
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $group
+     * @return void
+     */
+    public function scopeByGroup(Builder $query, string|array $group)
+    {
+        // cast input to array
+        $group = is_array($group) ? $group : [$group];
+
+        $query->whereHas('groups', function ($q) use ($group) {
+            $q->byCode($group);
+        });
+    }    
 }
