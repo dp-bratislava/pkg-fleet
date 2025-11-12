@@ -28,6 +28,7 @@ class Vehicle extends Model implements HasStatesContract
         'vin',
         // 'code',
         'model_id',
+        'maintenance_group_id',
         'state',
         'construction_year',
         'warranty_initial_date',
