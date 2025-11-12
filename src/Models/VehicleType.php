@@ -2,6 +2,7 @@
 
 namespace Dpb\Package\Fleet\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,5 +29,13 @@ class VehicleType extends Model
     public function model(): HasMany
     {
         return $this->hasMany(VehicleModel::class, "type_id");
-    }    
+    }
+
+    public function scopeByCode(Builder $query, string|array $code)
+    {
+        // cast input to array
+        $code = is_array($code) ? $code : [$code];
+
+        $query->whereIn('code', $code);
+    }
 }
