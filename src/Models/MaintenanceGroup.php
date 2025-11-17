@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
 
 class MaintenanceGroup extends Model
 {
@@ -51,4 +52,21 @@ class MaintenanceGroup extends Model
 
         $query->whereIn('code', $code);
     }    
+
+    /**
+     * Summary of scopeByType
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $type
+     * @return void
+     */
+    public function scopeByVehicleType(Builder $query, string|array $type)
+    {
+        // cast input to array
+        $type = Arr::wrap($type);
+
+        $query->whereHas('vehicleType', function ($q) use ($type) {
+            $q->byCode($type);
+        });
+    }
+
 }
