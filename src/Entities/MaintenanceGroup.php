@@ -9,6 +9,7 @@ class MaintenanceGroup
         private string $code,
         private string $title,
         private ?string $description,
+        private ?VehicleType $vehicleType,
     ) {}
 
     public function id(): string
@@ -31,6 +32,11 @@ class MaintenanceGroup
         return $this->description;
     }    
 
+    public function vehicleType(): ?VehicleType
+    {
+        return $this->vehicleType;
+    }    
+
     public function rename(string $newTitle): ?string
     {
         return $this->title = $newTitle;
@@ -45,4 +51,9 @@ class MaintenanceGroup
     {
         return $this->code = $code;
     }     
+
+    public function assignVehicleType(?VehicleType $vehicleType): ?VehicleType
+    {
+        return $this->vehicleType = $vehicleType;
+    }        
 }

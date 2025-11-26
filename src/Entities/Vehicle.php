@@ -10,7 +10,7 @@ class Vehicle
         private string $id,
         private ?string $vin,
         private ?VehicleModel $model,
-        private string $maintenanceGroupId,
+        private ?MaintenanceGroup $maintenanceGroup,
         // private int $constructionYear,
         private array $codes,
         // private int $constructionYear,
@@ -36,9 +36,9 @@ class Vehicle
         return $this->vin;
     }
 
-    public function maintenanceGroupId(): ?string
+    public function maintenanceGroup(): ?MaintenanceGroup
     {
-        return $this->maintenanceGroupId;
+        return $this->maintenanceGroup;
     }
 
     public function model(): ?VehicleModel
@@ -56,9 +56,9 @@ class Vehicle
         return $this->model = $model;
     }  
 
-    public function assignMaintenanceGropId(?string $maintenanceGroupId): ?string
+    public function assignMaintenanceGroup(?MaintenanceGroup $maintenanceGroup): ?MaintenanceGroup
     {
-        return $this->maintenanceGroupId = $maintenanceGroupId;
+        return $this->maintenanceGroup = $maintenanceGroup;
     }
 
     public function updateCode(?VehicleCode $code)

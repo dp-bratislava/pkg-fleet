@@ -11,4 +11,5 @@ interface MaintenanceGroupRepositoryInterface
     public function findByCode(string $code): ?MaintenanceGroup;
     public function all(): ?array;
     public function byCode(string|array $code): ?array;
+    public function byType(string|array $code): ?array;
 }

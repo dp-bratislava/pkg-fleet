@@ -11,4 +11,8 @@ interface VehicleRepositoryInterface
     public function findByCode(string $code): ?Vehicle;
     public function all(): ?array;
     public function byCode(string|array $code): ?array;
+    public function byMaintenanceGroup(string|array $code): ?array;
+    public function byGroup(string|array $code): ?array;
+    public function byType(string|array $code): ?array;
+    public function byBrand(string|array $title): ?array;
 }
