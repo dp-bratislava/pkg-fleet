@@ -26,7 +26,7 @@ class VehicleType extends Model
         return config('pkg-fleet.table_prefix') . 'vehicle_types';
     }
 
-    public function model(): HasMany
+    public function models(): HasMany
     {
         return $this->hasMany(VehicleModel::class, "type_id");
     }
