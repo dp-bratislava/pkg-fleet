@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
 use Spatie\ModelStates\HasStates;
 use Spatie\ModelStates\HasStatesContract;
 
@@ -182,6 +183,20 @@ class Vehicle extends Model implements HasStatesContract
         $query->whereHas('maintenanceGroup', function ($q) use ($maintenanceGroup) {
             $q->byCode($maintenanceGroup);
         });
+    }
+
+    /**
+     * Summary of scopeByMaintenanceGroup
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $maintenanceGroup
+     * @return void
+     */
+    public function scopeByMaintenanceGroupId(Builder $query, int|array $maintenanceGroupIds)
+    {
+        // cast input to array
+        $maintenanceGroupIds = Arr::wrap($maintenanceGroupIds);
+
+        $query->whereIn('maintenance_group_id', $maintenanceGroupIds);
     }
 
     /**

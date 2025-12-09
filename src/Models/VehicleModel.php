@@ -23,6 +23,8 @@ class VehicleModel extends Model
     protected $fillable = [
         'title',
         'type_id',
+        'brand_id',
+        'year',
     ];
 
     public function getTable()

@@ -21,7 +21,7 @@ class FleetServiceProvider extends PackageServiceProvider
                 '0004_add_state_to_vehicle',
                 '0005_create_brands_table',
                 '0006_create_groups_tables',
-                '0007_travel_log_table',
+                '0007_create_travel_log_table',
                 '0008_alter_vehicle_models_table',
                 '0009_add_color_to_maintenance_groups_table',
                 '0010_add_maintenance_group_to_vehicles_table',
