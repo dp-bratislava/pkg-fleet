@@ -69,4 +69,14 @@ class MaintenanceGroup extends Model
         });
     }
 
+    /**
+     * Summary of scopeByType
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $typeId
+     * @return void
+     */
+    public function scopeByVehicleTypeId(Builder $query, int $typeId)
+    {
+        $query->where('vehicle_type_id', '=', $typeId);
+    }
 }
