@@ -79,4 +79,13 @@ class MaintenanceGroup extends Model
     {
         $query->where('vehicle_type_id', '=', $typeId);
     }
+
+    public function scopeByVehicleTypeIds(Builder $query, array $typeIds)
+    {
+        // cast input to array
+        $typeIds = Arr::wrap($typeIds);
+
+        $query->whereIn('vehicle_type_id', $typeIds);
+    }
+
 }
