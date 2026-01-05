@@ -38,4 +38,9 @@ class VehicleType extends Model
 
         $query->whereIn('code', $code);
     }
+
+    public function scopeByIds(Builder $query, array $ids)
+    {
+        $query->whereIn('id', $ids);
+    }    
 }

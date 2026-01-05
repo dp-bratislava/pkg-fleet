@@ -153,6 +153,13 @@ class Vehicle extends Model implements HasStatesContract
         });
     }
 
+    public function scopeByTypeIds(Builder $query, array $typeIds)
+    {
+        $query->whereHas('model.type', function ($q) use ($typeIds) {
+            $q->byIds($typeIds);
+        });
+    }
+
     /**
      * Summary of scopeByBrand
      * @param \Illuminate\Database\Eloquent\Builder $query
