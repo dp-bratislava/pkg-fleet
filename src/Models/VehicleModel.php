@@ -63,6 +63,11 @@ class VehicleModel extends Model
         });
     }
 
+    public function scopeByTypeIds(Builder $query, array $typeIds)
+    {
+        $query->whereIn('type_id', $typeIds);
+    }
+
     /**
      * Summary of scopeByBrand
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -78,4 +83,6 @@ class VehicleModel extends Model
             $q->whereIn('title', $brand);
         });
     }    
+
+
 }
