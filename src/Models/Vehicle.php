@@ -126,6 +126,11 @@ class Vehicle extends Model implements HasStatesContract
             ->first()?->code;
     }
 
+    public function getLabelAttribute(): ?string
+    {
+        return $this->code?->code ?? $this->licencePlates()->first()?->code ?? 'N/A';
+    }
+
     // TO DO
     public function isUnderWarranty(): bool
     {
