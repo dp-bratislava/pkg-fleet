@@ -37,6 +37,7 @@ class Vehicle extends Model implements HasStatesContract
         'warranty_initial_km',
         'warranty_km',
         'commissioning_date',
+        'is_historic',
     ];
 
     public function __construct(array $attributes = [])
