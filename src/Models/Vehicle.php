@@ -116,6 +116,7 @@ class Vehicle extends Model implements HasStatesContract
     public function getCodeAttribute(): ?VehicleCode
     {
         return $this->codes()
+            ->wherePivot('date_to', null)
             ->orderByDesc('date_from')
             ->first();
     }
