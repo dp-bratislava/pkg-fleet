@@ -115,6 +115,13 @@ class Vehicle extends Model implements HasStatesContract
      */
     public function getCodeAttribute(): ?VehicleCode
     {
+        if ($this->relationLoaded('codes')) {
+            return $this->codes
+                ->filter(fn($c) => $c->pivot->date_to === null)
+                ->sortByDesc(fn($c) => $c->pivot->date_from)
+                ->first();
+        }
+
         return $this->codes()
             ->wherePivot('date_to', null)
             ->orderByDesc('date_from')
@@ -123,9 +130,7 @@ class Vehicle extends Model implements HasStatesContract
 
     public function getLicencePlateAttribute()
     {
-        return $this->licencePlates()
-            ->orderByDesc('date_from')
-            ->first()?->code;
+        return $this->code?->code ?? $this->licencePlates()->first()?->code ?? 'N/A';
     }
 
     public function getLabelAttribute(): ?string
