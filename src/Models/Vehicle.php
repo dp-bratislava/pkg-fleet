@@ -138,6 +138,11 @@ class Vehicle extends Model implements HasStatesContract
         return $this->code?->code ?? $this->licencePlates()->first()?->code ?? 'N/A';
     }
 
+    public function getLabelWithModelAttribute(): ?string
+    {
+        return $this->getLabelAttribute() . ',     ' . $this->model?->title;
+    }
+
     // TO DO
     public function isUnderWarranty(): bool
     {
@@ -170,6 +175,11 @@ class Vehicle extends Model implements HasStatesContract
         $query->whereHas('model.type', function ($q) use ($typeIds) {
             $q->byIds($typeIds);
         });
+    }
+
+    public function scopeByModelIds(Builder $query, array $modelIds)
+    {
+        $query->whereIn('model_id', $modelIds);
     }
 
     /**
