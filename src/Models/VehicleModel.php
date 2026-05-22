@@ -3,6 +3,7 @@
 namespace Dpb\Package\Fleet\Models;
 
 use Dpb\Package\Eav\Traits\HasAttributes;
+use Dpb\Package\Fleet\Models\Traits\HasBinaryUuidFromDb;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,6 +15,7 @@ class VehicleModel extends Model
 {
     use SoftDeletes;    
     use HasAttributes;
+    use HasBinaryUuidFromDb;
 
     /**
      * The attributes that are mass assignable.

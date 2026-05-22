@@ -3,6 +3,7 @@
 namespace Dpb\Package\Fleet\Models;
 
 use Dpb\Extension\ModelState\Traits\HasStateHistory;
+use Dpb\Package\Fleet\Models\Traits\HasBinaryUuidFromDb;
 use Dpb\Package\Fleet\States\VehicleState;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,7 @@ class Vehicle extends Model implements HasStatesContract
     use SoftDeletes;
     use HasStates;
     use HasStateHistory;
+    use HasBinaryUuidFromDb;
 
     /**
      * The attributes that are mass assignable.

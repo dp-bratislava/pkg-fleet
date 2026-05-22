@@ -29,6 +29,7 @@ class FleetServiceProvider extends PackageServiceProvider
                 '2025_01_01_080012_add_vehicle_type_to_maintenance_group_table',
                 '2025_01_01_080013_create_daily_expeditions_table',
                 '2025_01_01_080014_add_is_historic_to_vehicles_table',
+                '2026_05_22_095015_add_uuid_to_fleet_tables',
             ])
             ->runsMigrations()
             ->hasInstallCommand(function (InstallCommand $command) {
