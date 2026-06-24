@@ -24,6 +24,10 @@ class VehicleModel extends Model
         'title',
         'type_id',
         'brand_id',
+        'length',
+        'seats',
+        'fuel_type_id',
+        'alternate_fuel_type_id',
         'year',
     ];
 
@@ -42,17 +46,21 @@ class VehicleModel extends Model
         return $this->belongsTo(VehicleType::class, "type_id");
     }
 
+    public function fuelType(): BelongsTo
+    {
+        return $this->belongsTo(FuelType::class, "fuel_type_id");
+    }
+
+    public function alternateFuelType(): BelongsTo
+    {
+        return $this->belongsTo(FuelType::class, "alternate_fuel_type_id");
+    }
+
     public function vehicles(): HasMany
     {
         return $this->hasMany(Vehicle::class, "model_id");
     }    
 
-    /**
-     * Summary of scopeByType
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|array $type
-     * @return void
-     */
     public function scopeByType(Builder $query, string|array $type)
     {
         // cast input to array
@@ -68,12 +76,6 @@ class VehicleModel extends Model
         $query->whereIn('type_id', $typeIds);
     }
 
-    /**
-     * Summary of scopeByBrand
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|array $brand
-     * @return void
-     */
     public function scopeByBrand(Builder $query, string|array $brand)
     {
         // cast input to array
