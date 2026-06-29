@@ -128,19 +128,31 @@ class Vehicle extends Model implements HasStatesContract
             ->first();
     }
 
-    public function getLicencePlateAttribute()
+    public function getLicencePlateAttribute(): ?LicencePlate
     {
-        return $this->code?->code ?? $this->licencePlates()->first()?->code ?? 'N/A';
+        if ($this->relationLoaded('licencePlates')) {
+            return $this->licencePlates
+                ->filter(fn($l) => $l->pivot->date_to === null)
+                ->sortByDesc(fn($l) => $l->pivot->date_from)
+                ->first();
+        }
+
+        return $this->licencePlates()
+            ->wherePivot('date_to', null)
+            ->orderByDesc('date_from')
+            ->first();
     }
 
-    public function getLabelAttribute(): ?string
+    public function getLabelAttribute(): string
     {
-        return $this->code?->code ?? $this->licencePlates()->first()?->code ?? 'N/A';
+        return $this->code?->code 
+            ?? $this->licencePlate?->code 
+            ?? 'N/A';
     }
 
-    public function getLabelWithModelAttribute(): ?string
+    public function getLabelWithModelAttribute(): string
     {
-        return $this->getLabelAttribute() . ',     ' . $this->model?->title;
+        return $this->label . ',     ' . ($this->model?->title ?? 'N/A');
     }
 
     // TO DO

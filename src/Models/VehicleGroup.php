@@ -11,11 +11,6 @@ class VehicleGroup extends Model
 {
     use SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'code',
         'title',
@@ -37,12 +32,6 @@ class VehicleGroup extends Model
         );
     }    
 
-    /**
-     * Summary of scopeByCode
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|array $code
-     * @return void
-     */
     public function scopeByCode(Builder $query, string|array $code)
     {
         // cast input to array
