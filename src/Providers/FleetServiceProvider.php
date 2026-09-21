@@ -7,7 +7,6 @@ use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Dpb\Package\Fleet\Models\Vehicle;
-use Dpb\Package\Fleet\Observers\VehicleObserver;
 
 class FleetServiceProvider extends PackageServiceProvider
 {
@@ -37,10 +36,5 @@ class FleetServiceProvider extends PackageServiceProvider
                 $command
                     ->publishConfigFile();
             });
-    }
-    
-    public function boot(): void
-    {
-        Vehicle::observe(VehicleObserver::class);
     }
 }

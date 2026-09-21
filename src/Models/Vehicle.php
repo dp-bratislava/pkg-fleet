@@ -13,7 +13,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Spatie\ModelStates\HasStates;
 use Spatie\ModelStates\HasStatesContract;
+use Dpb\Package\Fleet\Models\DispatchGroup;
 
+// #[ObservedBy([VehicleObserver::class])]
 class Vehicle extends Model implements HasStatesContract
 {
     use SoftDeletes;
@@ -65,6 +67,16 @@ class Vehicle extends Model implements HasStatesContract
     public function maintenanceGroup(): BelongsTo
     {
         return $this->belongsTo(MaintenanceGroup::class, "maintenance_group_id");
+    }
+
+    public function dispatchGroups(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            DispatchGroup::class,
+            config('pkg-fleet.table_prefix') . "dispatch_group_vehicle",
+            'vehicle_id',
+            'group_id'
+        );
     }
 
     public function groups(): BelongsToMany
@@ -153,12 +165,6 @@ class Vehicle extends Model implements HasStatesContract
     public function getLabelWithModelAttribute(): string
     {
         return $this->label . ',     ' . ($this->model?->title ?? 'N/A');
-    }
-
-    // TO DO
-    public function isUnderWarranty(): bool
-    {
-        return true;
     }
 
     public function travelLog(): HasMany
